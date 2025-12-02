@@ -38,8 +38,8 @@ project/
 To run this project locally:
 
 ```bash
-git clone https://github.com/schaenick/pokemon-analyzer
-cd pokemon-analyzer
+git clone https://github.com/schaenick/mini-data-lab-pkmn
+cd mini-data-lab-pkmn
 
 python -m venv .venv
 .venv\Scripts\activate  
