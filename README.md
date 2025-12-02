@@ -17,7 +17,7 @@ It aims to analyze type distribution, strengths and weaknesses between types and
 ---
 
 ## Project Structure
-
+```text 
 project/
 │
 ├── data/
@@ -30,7 +30,7 @@ project/
 │   └── visualizations.py
 │
 └── README.md
-
+```
 ---
 
 ## Installation
