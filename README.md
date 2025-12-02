@@ -17,7 +17,7 @@ It aims to analyze type distribution, strengths and weaknesses between types and
 ---
 
 ## Project Structure
-
+```text 
 project/
 │
 ├── data/
@@ -30,20 +30,20 @@ project/
 │   └── visualizations.py
 │
 └── README.md
-
+```
 ---
 
 ## Installation
 
 To run this project locally:
 
-bash:
-git clone https://github.com/schaenick/pokemon-analyzer
-cd pokemon-analyzer
+```bash
+git clone https://github.com/schaenick/mini-data-lab-pkmn
+cd mini-data-lab-pkmn
 
 python -m venv .venv
 .venv\Scripts\activate  
 
 pip install -r requirements.txt
-
+```
 ---
