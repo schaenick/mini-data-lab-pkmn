@@ -37,7 +37,7 @@ project/
 
 To run this project locally:
 
-bash:
+```bash
 git clone https://github.com/schaenick/pokemon-analyzer
 cd pokemon-analyzer
 
@@ -45,5 +45,5 @@ python -m venv .venv
 .venv\Scripts\activate  
 
 pip install -r requirements.txt
-
+```
 ---
