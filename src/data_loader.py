@@ -12,4 +12,7 @@ def load_data(data_set):
 
 def load_type(type_data):
     type_adv_list = pd.read_csv(type_data)
+    type_adv_list["attacker"] = type_adv_list["attacker"].str.strip().str.lower()
+    type_adv_list["defender"] = type_adv_list["defender"].str.strip().str.lower()
+    type_adv_list["effectiveness"] = type_adv_list["effectiveness"].astype(float)
     return type_adv_list

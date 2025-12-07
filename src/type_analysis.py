@@ -2,9 +2,10 @@ import pandas
 from data_loader import load_data, load_type
 
 # type = input("Choose a type!").lower().strip()
-type = "fire"
+type = "grass"
 pokemon_data_set = "data\\pokemon_data.csv"
 type_advantages = "data\\type_advantage_data.csv"
+pokemon_df = load_data(pokemon_data_set)
 
 
 def count_pokemon_of_type(df, type_name):
@@ -12,17 +13,37 @@ def count_pokemon_of_type(df, type_name):
     return mask.sum()
 
 
-def count_type_advantage(df, type_name):
-    type_df = df[df["attacker"] == type_name]
+def count_type_advantage(type_advantages, pokemon_data_set, type_name):
+    type_df = type_advantages[type_advantages["attacker"] == type_name]
+    weaker = type_df.loc[type_df["effectiveness"] == 2, "defender"].tolist()
+    equal = type_df.loc[type_df["effectiveness"] == 1, "defender"].tolist()
+    stronger = type_df.loc[type_df["effectiveness"] == 0.5, "defender"].tolist()
+    no_eff = type_df.loc[type_df["effectiveness"] == 0, "defender"].tolist()
 
-    stronger = (type_df["effectiveness"] == 2).sum()
-    equal = (type_df["effectiveness"] == 1).sum()
-    weaker = (type_df["effectiveness"] == 0.5).sum()
-    no_eff = (type_df["effectiveness"] == 0).sum()
+    stronger_mask = pokemon_data_set["type1"].isin(stronger) | pokemon_data_set[
+        "type2"
+    ].isin(stronger)
+    stronger_pokemon = stronger_mask.sum()
+    weaker_mask = pokemon_data_set["type1"].isin(weaker) | pokemon_data_set[
+        "type2"
+    ].isin(weaker)
+    weaker_pokemon = weaker_mask.sum()
 
-    return stronger, weaker, equal, no_eff
+    equal_mask = pokemon_data_set["type1"].isin(equal) | pokemon_data_set["type2"].isin(
+        equal
+    )
+    equal_pokemon = equal_mask.sum()
+
+    no_eff_mask = pokemon_data_set["type1"].isin(no_eff) | pokemon_data_set[
+        "type2"
+    ].isin(no_eff)
+    no_eff_pokemon = no_eff_mask.sum()
+
+    return stronger_pokemon, weaker_pokemon, equal_pokemon, no_eff_pokemon
 
 
-stronger, weaker, equal, noeff = count_type_advantage(load_type(type_advantages), type)
-type_count = count_pokemon_of_type(load_data(pokemon_data_set), type)
+stronger, weaker, equal, noeff = count_type_advantage(
+    load_type(type_advantages), pokemon_df, type
+)
+type_count = count_pokemon_of_type(pokemon_df, type)
 print(type_count, stronger, weaker, equal, noeff)
