@@ -24,7 +24,5 @@ for entry in type_list:
         }
     )
 ranked_df = pd.DataFrame(ranked)
-ranked_df = ranked_df.sort_values("score", ascending=False)
-ranked_df = ranked_df.reset_index(drop=True)
+ranked_df = ranked_df.sort_values("score", ascending=False).reset_index(drop=True)
 ranked_df["rank"] = ranked_df.index + 1
-print(ranked_df)
