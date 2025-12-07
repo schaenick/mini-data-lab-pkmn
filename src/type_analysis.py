@@ -1,11 +1,4 @@
-import pandas
-from data_loader import load_data, load_type
-
-# type = input("Choose a type!").lower().strip()
-type = "grass"
-pokemon_data_set = "data\\pokemon_data.csv"
-type_advantages = "data\\type_advantage_data.csv"
-pokemon_df = load_data(pokemon_data_set)
+import pandas as pd
 
 
 def count_pokemon_of_type(df, type_name):
@@ -40,10 +33,3 @@ def count_type_advantage(type_advantages, pokemon_data_set, type_name):
     no_eff_pokemon = no_eff_mask.sum()
 
     return stronger_pokemon, weaker_pokemon, equal_pokemon, no_eff_pokemon
-
-
-stronger, weaker, equal, noeff = count_type_advantage(
-    load_type(type_advantages), pokemon_df, type
-)
-type_count = count_pokemon_of_type(pokemon_df, type)
-print(type_count, stronger, weaker, equal, noeff)
