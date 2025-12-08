@@ -5,6 +5,11 @@ from matplotlib.figure import Figure
 def create_type_detail_figure(
     type_name: str, stronger: int, weaker: int, equal: int, no_eff: int
 ) -> Figure:
+    """
+    Creates the Matplotlib Figure for the type detail plot.
+
+    Returns a Figure object suitable for embedding in the Tkinter GUI.
+    """
     categories = ["Stärker", "Schwächer", "Gleich", "Kein Effekt"]
     values = [stronger, weaker, equal, no_eff]
 
@@ -21,7 +26,11 @@ def create_type_detail_figure(
 
 
 def create_global_ranking_figure(df) -> Figure:
+    """
+    Creates the Matplotlib Figure for the global ranking by score.
 
+    Returns a Figure object suitable for embedding in the Tkinter GUI.
+    """
     df_sorted = df.sort_values("score", ascending=False)
 
     fig = Figure(figsize=(6, 3.5))
