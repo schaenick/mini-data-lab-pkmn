@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 def count_pokemon_of_type(df, type_name):
     mask = (df["type1"] == type_name) | (df["type2"] == type_name)
     return mask.sum()

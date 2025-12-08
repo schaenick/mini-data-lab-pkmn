@@ -1,21 +1,30 @@
 from type_analysis import count_type_advantage, count_pokemon_of_type
-from data_loader import load_type, load_type, type_list, pokemon_df, type_advantages
+from initialization import type_list, pokemon_df
 import pandas as pd
+from initialization import type_list, pokemon_df, type_adv_df
 
-
-# type = input("Choose a type!").lower().strip()
+WEIGHT_STRONGER = 2.0
+WEIGHT_EQUAL = 1.0
+WEIGHT_WEAKER = -1.0
+WEIGHT_NO_EFF = -2.0
 
 
 ranked = []
 for entry in type_list:
     stronger, weaker, equal, noeff = count_type_advantage(
-        load_type(type_advantages), pokemon_df, entry
+        type_adv_df, pokemon_df, entry
     )
     type_count = count_pokemon_of_type(pokemon_df, entry)
+    score = (
+        (stronger * WEIGHT_STRONGER)
+        + (equal * WEIGHT_EQUAL)
+        + (weaker * WEIGHT_WEAKER)
+        + (noeff * WEIGHT_NO_EFF)
+    )
     ranked.append(
         {
             "type": entry,
-            "score": int(weaker) - int(stronger),
+            "score": score,
             "num_pokemon": int(type_count),
         }
     )

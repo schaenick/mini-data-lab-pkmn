@@ -1,28 +1,38 @@
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 
 
-def plot_type_scores(df):
-    df_sorted = df.sort_values("score", ascending=False)
-
-    plt.figure(figsize=(10, 6))
-    plt.bar(df_sorted["type"], df_sorted["score"])
-    plt.xticks(rotation=45)
-    plt.xlabel("Pokémon Type")
-    plt.ylabel("Score")
-    plt.title("Pokémon Type Score Ranking")
-    plt.tight_layout()
-    plt.show()
-
-
-def plot_type_detail(
+def create_type_detail_figure(
     type_name: str, stronger: int, weaker: int, equal: int, no_eff: int
-):
-    categories = ["Stärker", "Schwächer", "Gleich effektiv", "Kein Effekt"]
+) -> Figure:
+    categories = ["Stärker", "Schwächer", "Gleich", "Kein Effekt"]
     values = [stronger, weaker, equal, no_eff]
 
-    plt.figure(figsize=(6, 4))
-    plt.bar(categories, values)
-    plt.title(f"Effektivitätsprofil für {type_name.title()}")
-    plt.ylabel("Anzahl Pokémon")
-    plt.tight_layout()
-    plt.show()
+    fig = Figure(figsize=(5, 3))
+    ax = fig.add_subplot(111)
+
+    ax.bar(categories, values)
+
+    ax.set_title(f"Effektivitätsprofil für {type_name.title()}")
+    ax.set_ylabel("Anzahl Pokémon")
+
+    fig.tight_layout()
+    return fig
+
+
+def create_global_ranking_figure(df) -> Figure:
+
+    df_sorted = df.sort_values("score", ascending=False)
+
+    fig = Figure(figsize=(6, 3.5))
+    ax = fig.add_subplot(111)
+
+    ax.bar(df_sorted["type"], df_sorted["score"])
+
+    ax.set_title("Globales Typ-Ranking (Score)")
+    ax.set_xlabel("Typ")
+    ax.set_ylabel("Score")
+    ax.tick_params(axis="x", rotation=45)
+
+    fig.tight_layout()
+    return fig
