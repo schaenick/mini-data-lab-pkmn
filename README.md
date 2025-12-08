@@ -1,7 +1,9 @@
 # Pokémon Type Analyzer
+## Version 1.0.0 (Initial Release)
 
 This project explores Pokémon types and their statistical characteristics using a publicly available dataset.  
 It aims to analyze type distribution, strengths and weaknesses between types and average stat performance through Python-based data analysis and visualization.
+
 
 ---
 
@@ -25,25 +27,13 @@ project/
 │
 ├── src/
 │   ├── data_loader.py
+│   ├── guy.py
+│   ├── initialization.py
+│   ├── main.py
+│   ├── score_analysis.py
 │   ├── type_analysis.py
-│   ├── stats_analysis.py
 │   └── visualizations.py
 │
 └── README.md
-```
----
-
-## Installation
-
-To run this project locally:
-
-```bash
-git clone https://github.com/schaenick/mini-data-lab-pkmn
-cd mini-data-lab-pkmn
-
-python -m venv .venv
-.venv\Scripts\activate  
-
-pip install -r requirements.txt
 ```
 ---
