@@ -1,6 +1,5 @@
 import tkinter as tk
-
-types = ["fire", "water", "grass", "rock", "bug", "ghost", "fairy"]
+from data_loader import type_list
 
 window = tk.Tk()
 window.geometry("600x400")
@@ -16,8 +15,21 @@ button_frame.pack(pady=10)
 max_columns = 3
 row = 0
 col = 0
-for poke_type in types:
-    btn = tk.Button(button_frame, text=poke_type, width=10)
+
+
+def button_click(poke_type):
+    print(poke_type)
+    return
+
+
+for poke_type in type_list:
+    btn = tk.Button(
+        button_frame,
+        text=poke_type.title(),
+        width=10,
+        command=lambda t=poke_type: button_click(t),
+    )
+
     btn.grid(row=row, column=col, padx=5, pady=5)
 
     col += 1

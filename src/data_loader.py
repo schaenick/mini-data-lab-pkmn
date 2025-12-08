@@ -16,3 +16,9 @@ def load_type(type_data):
     type_adv_list["defender"] = type_adv_list["defender"].str.strip().str.lower()
     type_adv_list["effectiveness"] = type_adv_list["effectiveness"].astype(float)
     return type_adv_list
+
+
+pokemon_data_set = "data\\pokemon_data.csv"
+type_advantages = "data\\type_advantage_data.csv"
+pokemon_df = load_data(pokemon_data_set)
+type_list = pd.concat([pokemon_df["type1"], pokemon_df["type2"]]).dropna().unique()

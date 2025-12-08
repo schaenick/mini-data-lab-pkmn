@@ -1,14 +1,10 @@
 from type_analysis import count_type_advantage, count_pokemon_of_type
-from data_loader import load_data, load_type
+from data_loader import load_type, load_type, type_list, pokemon_df, type_advantages
 import pandas as pd
 
 
 # type = input("Choose a type!").lower().strip()
-pokemon_data_set = "data\\pokemon_data.csv"
-type_advantages = "data\\type_advantage_data.csv"
-pokemon_df = load_data(pokemon_data_set)
 
-type_list = pd.concat([pokemon_df["type1"], pokemon_df["type2"]]).dropna().unique()
 
 ranked = []
 for entry in type_list:
