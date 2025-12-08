@@ -8,9 +8,9 @@ def count_pokemon_of_type(df, type_name):
 
 def count_type_advantage(type_advantages, pokemon_data_set, type_name):
     type_df = type_advantages[type_advantages["attacker"] == type_name]
-    weaker = type_df.loc[type_df["effectiveness"] == 2, "defender"].tolist()
+    stronger = type_df.loc[type_df["effectiveness"] == 2, "defender"].tolist()
     equal = type_df.loc[type_df["effectiveness"] == 1, "defender"].tolist()
-    stronger = type_df.loc[type_df["effectiveness"] == 0.5, "defender"].tolist()
+    weaker = type_df.loc[type_df["effectiveness"] == 0.5, "defender"].tolist()
     no_eff = type_df.loc[type_df["effectiveness"] == 0, "defender"].tolist()
 
     stronger_mask = pokemon_data_set["type1"].isin(stronger) | pokemon_data_set[

@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from score_analysis import ranked_df
 
 
 def plot_type_scores(df):
@@ -15,4 +14,15 @@ def plot_type_scores(df):
     plt.show()
 
 
-plot_type_scores(ranked_df)
+def plot_type_detail(
+    type_name: str, stronger: int, weaker: int, equal: int, no_eff: int
+):
+    categories = ["Stärker", "Schwächer", "Gleich effektiv", "Kein Effekt"]
+    values = [stronger, weaker, equal, no_eff]
+
+    plt.figure(figsize=(6, 4))
+    plt.bar(categories, values)
+    plt.title(f"Effektivitätsprofil für {type_name.title()}")
+    plt.ylabel("Anzahl Pokémon")
+    plt.tight_layout()
+    plt.show()
